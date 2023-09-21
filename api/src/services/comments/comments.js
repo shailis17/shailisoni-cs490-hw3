@@ -1,7 +1,7 @@
 import { db } from 'src/lib/db'
 
-export const comments = () => {
-  return db.comment.findMany()
+export const comments = ({ postId }) => {
+  return db.comment.findMany({ where: { postId } })
 }
 
 export const comment = ({ id }) => {
@@ -20,3 +20,10 @@ export const createComment = ({ input }) => {
     data: input,
   })
 }
+
+export const deleteComment = ({ id }) => {
+  return db.comment.delete({
+    where: { id },
+  })
+}
+
